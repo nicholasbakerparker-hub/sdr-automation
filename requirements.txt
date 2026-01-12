@@ -2,9 +2,12 @@
 # Install with: pip install -r requirements.txt
 
 # Core dependencies
-anthropic>=0.39.0          # Claude API for conversation analysis
 python-dotenv>=1.0.0       # Load environment variables from .env file
 requests>=2.31.0           # Make API calls to Outreach, Salesforce, Orum
+
+# Local AI (no API keys needed!)
+openai-whisper>=20240930   # Speech-to-text transcription (runs locally)
+# Note: Ollama must be installed separately (https://ollama.com)
 
 # Salesforce integration
 simple-salesforce>=1.12.0  # Easy Salesforce API access

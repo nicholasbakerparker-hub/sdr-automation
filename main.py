@@ -14,6 +14,10 @@ from dotenv import load_dotenv
 from analyzer import ConversationAnalyzer
 from email_templates import EmailTemplates
 from integrations import OutreachAPI, SalesforceAPI, OrumAPI
+from transcriber import AudioTranscriber
+
+# Supported audio formats
+AUDIO_EXTENSIONS = {'.wav', '.mp3', '.m4a', '.flac', '.ogg', '.webm'}
 
 
 class SDRAutomation:
@@ -36,7 +40,8 @@ class SDRAutomation:
             self.outreach = OutreachAPI()
             self.salesforce = SalesforceAPI()
             self.orum = OrumAPI()
-            
+            self.transcriber = None  # Lazy-load when needed
+
             print("✅ All systems initialized!\n")
             
         except Exception as e:
@@ -207,34 +212,58 @@ class SDRAutomation:
         
         print("   ✅ Marked as disqualified")
     
-    def run_manual(self, transcript_file):
+    def run_manual(self, input_file):
         """
-        Process a single transcript file manually
-        
+        Process a single transcript or audio file manually
+
         Args:
-            transcript_file (str): Path to text file with transcript
+            input_file (str): Path to text file (.txt) or audio file (.wav, .mp3, etc.)
         """
-        
-        print(f"📂 Loading transcript from {transcript_file}...")
-        
         try:
-            with open(transcript_file, 'r') as f:
-                transcript = f.read()
-            
-            print(f"✅ Loaded {len(transcript)} characters\n")
-            
+            # Check if it's an audio file
+            file_ext = os.path.splitext(input_file)[1].lower()
+            is_audio = file_ext in AUDIO_EXTENSIONS
+
+            if is_audio:
+                print(f"🎤 Processing audio file: {input_file}")
+                print("=" * 60)
+
+                # Lazy-load transcriber
+                if self.transcriber is None:
+                    print("\n🔄 Loading Whisper transcription model...")
+                    self.transcriber = AudioTranscriber(model_size="base")
+
+                # Transcribe audio to text
+                print(f"\n📝 Transcribing audio...")
+                result = self.transcriber.transcribe(input_file)
+                transcript = result['text']
+                print(f"✅ Transcription complete ({len(transcript)} characters)")
+                print(f"   Language detected: {result['language']}\n")
+
+                # Show preview of transcript
+                print("📄 Transcript preview:")
+                print("-" * 40)
+                preview = transcript[:500] + "..." if len(transcript) > 500 else transcript
+                print(preview)
+                print("-" * 40 + "\n")
+            else:
+                print(f"📂 Loading transcript from {input_file}...")
+                with open(input_file, 'r') as f:
+                    transcript = f.read()
+                print(f"✅ Loaded {len(transcript)} characters\n")
+
             # Ask for prospect email
             prospect_email = input("Enter prospect email (or press Enter to skip): ").strip()
             if not prospect_email:
                 prospect_email = None
-            
+
             # Process the call
-            result = self.process_call(transcript, prospect_email)
-            
+            self.process_call(transcript, prospect_email)
+
             print("\n✨ Done! Check Outreach and Salesforce for updates.")
-            
+
         except FileNotFoundError:
-            print(f"❌ File not found: {transcript_file}")
+            print(f"❌ File not found: {input_file}")
             print("💡 Make sure you're in the right directory")
         except Exception as e:
             print(f"❌ Error: {str(e)}")
@@ -289,11 +318,16 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  Process a single transcript:
+  Process a text transcript:
     python main.py --manual transcript.txt
-  
+
+  Process an audio file (auto-transcribes with Whisper):
+    python main.py --manual call_recording.wav
+
   Run continuously (check Orum every 5 minutes):
     python main.py --auto
+
+Supported audio formats: .wav, .mp3, .m4a, .flac, .ogg, .webm
         """
     )
     
@@ -301,7 +335,7 @@ Examples:
         '--manual',
         type=str,
         metavar='FILE',
-        help='Process a single transcript file'
+        help='Process a transcript (.txt) or audio file (.wav, .mp3, etc.)'
     )
     
     parser.add_argument(
