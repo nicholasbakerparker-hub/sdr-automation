@@ -1,0 +1,18 @@
+# Python Packages Required for SDR Automation
+# Install with: pip install -r requirements.txt
+
+# Core dependencies
+anthropic>=0.39.0          # Claude API for conversation analysis
+python-dotenv>=1.0.0       # Load environment variables from .env file
+requests>=2.31.0           # Make API calls to Outreach, Salesforce, Orum
+
+# Salesforce integration
+simple-salesforce>=1.12.0  # Easy Salesforce API access
+
+# Date/time handling
+python-dateutil>=2.8.2     # Parse and format dates
+pytz>=2023.3               # Timezone support
+
+# Optional but recommended
+colorama>=0.4.6            # Colored terminal output (makes logs prettier)
+tqdm>=4.66.0               # Progress bars for long operations

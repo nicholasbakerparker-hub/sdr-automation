@@ -1,0 +1,35 @@
+Dan Lauder: Hello. This is Dan. Hello?
+
+Nick Parker: Sorry. My phone was being a little bit strange. My name is Nick. I was trying to speak with Dan.
+
+Dan Lauder: This is Dan.
+
+Nick Parker: Hey, Dan. I know that I'm definitely calling you kinda out of the blue. I was reaching out from Pathify. I'm not sure if you have a few free seconds, and I can give you a super, super speedy rundown of why I'm calling and see if it's vaguely relevant?
+
+Dan Lauder: Sure. Go ahead.
+
+Nick Parker: So like I said, I'm calling from Pathify. It's a student portal campus experience platform, and we work with a whole bunch of different schools. So, like, UCF schools in the State University New York system, University of Pacific out in California, for example. We've helped them save about forty percent on their student facing tech stack, but increase engagement by eighty percent. And it's just kinda consolidating systems, so bringing them down. University of Pacific went from twenty eight down to five, and that saves a lot of money and makes it simpler for the students. And I was really just calling to see if that kinda lines up with what y'all are looking to do over at Jefferson College. If you might wanna take ten minutes at some point in the future to talk to someone smarter than I am since I'm still fairly new to this.
+
+Dan Lauder: Yeah. So when you say down from twenty eight to five, what is what exactly does that mean?
+
+Nick Parker: So they had, like, twenty eight different student phasing systems. I don't know all of them off the top of my head, to be honest.
+
+Dan Lauder: Oh, I see. Okay. You're talking about applications and things? Okay. Alright. I understand what you're saying now. Okay. Well, it would not be since I just handled the LMS and, you know, Canvas for the online courses, I really don't have any of that.
+
+Nick Parker: Okay. I mean, we do integrate with the LMSs, and Canvas specifically. So there's that component.
+
+Dan Lauder: Right? There's that component.
+
+Nick Parker: Yeah. We don't replace the LMSs. We sit on top of that and kinda get rid of the other items on top of that because over the years, school sort of collect different systems and then you have this whole sprawl of things that confuses the students. So just kinda it helps make sure the students aren't having to log in to a bunch of different things. They know where their information's coming from. Back to the University of Pacific just because I know them the best. This doesn't really feed into what you do as an instructional designer, but they within their first semester of using Pathify, their holds in the registrar's office went down by eighty percent just simply because the students actually wanted to use their systems because it wasn't just boring and impossible to find stuff. So I was really seeing if you wanted to take a look at it a little bit deeper in, like, a few weeks or whenever is convenient for you to see if you think it might be helpful in any obviously, I know it's not gonna be a decision that's made anytime soon. More so just kinda information to see if you think it might be nice.
+
+Dan Lauder: Yep. No. I'll pass on it.
+
+Nick Parker: Okay. No problem. Well, I appreciate you taking the time to hear me out. And if that ever changes, you can always reach back out to us.
+
+Dan Lauder: Alright. Thanks a lot.
+
+Nick Parker: Alright. Awesome. Thank you, Dan. You have a great rest of your day.
+
+Dan Lauder: Alright. Alright. Yeah. You too. Bye.
+
+Nick Parker: Alright. Bye bye.
