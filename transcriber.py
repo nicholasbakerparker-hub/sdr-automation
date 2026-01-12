@@ -4,6 +4,10 @@ Converts audio files (.wav, .mp3, .m4a) to text using Whisper
 """
 
 import os
+
+# Ensure ffmpeg is in PATH (commonly installed in ~/.local/bin)
+os.environ['PATH'] = os.path.expanduser('~/.local/bin') + ':' + os.environ.get('PATH', '')
+
 import whisper
 
 
