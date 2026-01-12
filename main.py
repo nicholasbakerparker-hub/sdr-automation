@@ -51,7 +51,6 @@ class SDRAutomation:
         
         # Load settings
         self.auto_send = os.getenv('AUTO_SEND_EMAILS', 'false').lower() == 'true'
-        self.auto_update_sf = os.getenv('AUTO_UPDATE_SALESFORCE', 'true').lower() == 'true'
         self.auto_remove_dead = os.getenv('AUTO_REMOVE_DEAD_ENDS', 'true').lower() == 'true'
         self.check_interval = int(os.getenv('CHECK_INTERVAL', '5'))  # minutes
     
@@ -110,22 +109,8 @@ class SDRAutomation:
         elif decision == 'DEAD_END':
             self._handle_dead_end_prospect(analysis, prospect_data)
         
-        # Step 4: Log in Salesforce
-        if self.auto_update_sf and prospect_data and prospect_data.get('id'):
-            print("\n4️⃣  Updating Salesforce...")
-            self.salesforce.log_call_activity(
-                prospect_data['id'],
-                transcript,
-                analysis
-            )
-            
-            # Update status if dead end
-            if decision == 'DEAD_END':
-                self.salesforce.update_lead_status(
-                    prospect_data['id'],
-                    'Disqualified',
-                    prospect_data.get('is_lead', False)
-                )
+        # Note: Salesforce is read-only (just pulls prospect info)
+        # No logging or status updates are made
         
         print("\n" + "=" * 60)
         print("✅ PROCESSING COMPLETE")
